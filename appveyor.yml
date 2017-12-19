@@ -17,4 +17,4 @@ build_script:
 
 test_script:
   - cmd: |
-      choco install nscp.%pkg_version%.nupkg
+      choco install nscp.%pkg_version%.nupkg -s .
