@@ -18,6 +18,6 @@
         <summary>NSClient++ (nscp) aims to be a simple yet powerful and flexible monitoring daemon. It was built for Nagios/Icinga/Naemon, but nothing in the daemon is Nagios/Icinga specific and it can and is used in many other scenarios where you want to receive/distribute check metrics</summary>
         <releaseNotes>https://github.com/mickem/nscp/releases</releaseNotes>
         <copyright />
-        <tags>NSClient nagios admin</tags>
+        <tags>NSClient nagios admin monitoring</tags>
     </metadata>
 </package>
