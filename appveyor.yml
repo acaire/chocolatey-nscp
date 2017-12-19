@@ -3,13 +3,18 @@ image: Visual Studio 2017
 
 environment:
   pkg_version: 0.5.0.62
+  checksum: 2186b60d588fa0811344ce709332f9c63670019c62ae92eae49698bf76205a95
+  checksum64: 1854de86ad4fda3391f273de0f9985b702c014bdec01b26ad28a1343177f537f
 
 install:
-  - ps: iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-  - refreshenv
+  - ps: |
+      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+      refreshenv
 
 build_script:
-  - cmd: choco pack nscp.nuspec version=%pkg_version%
+  - cmd: |
+      choco pack nscp.nuspec version=%pkg_version%
 
 test_script:
-  - cmd: choco install nscp.%pkg_version%.nupkg
+  - cmd: |
+      choco install nscp.%pkg_version%.nupkg
