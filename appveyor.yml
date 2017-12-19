@@ -1,12 +1,15 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 
+environment:
+  pkg_version: 0.5.0.62
+
 install:
 - ps: >-
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 build_script:
 - cmd: >-
-    choco pack
+    choco pack nscp.nuspec version=$pkg_version
 test_script:
 - cmd: >-
-    choco install nscp*.nupkg -fdv
+    choco install nscp.${pkg_version}.nupkg
