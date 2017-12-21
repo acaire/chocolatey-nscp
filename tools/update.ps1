@@ -4,9 +4,8 @@ $releases = 'https://github.com/mickem/nscp/releases'
 
 function global:au_SearchReplace {
     @{
-       ".\tools\chocolateyInstall.ps1" = @{
-          "(^\s*checksum\s*=\s*)('.*')"   = "`$1'$($Latest.Checksum32)'"
-          "(^\s*checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
+       "$($Latest.PackageName).nuspec" = @{
+          "(###VERSION###)" = "`${1}$($Latest.Version)"
         }
      }
 }
