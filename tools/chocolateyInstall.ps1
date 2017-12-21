@@ -1,10 +1,13 @@
+$ErrorActionPreference = 'Stop'
+
 $packageName = 'NSClient++'
+$toolsDir = Split-Path $MyInvocation.MyCommand.Definition
 
 $packageArgs = @{
   packageName    = $packageName
   fileType       = 'msi'
-  file           = gi package\*x86.msi
-  file64         = gi package\*x64.msi
+  file           = gi $toolsDir\*Win32.msi
+  file64         = gi $toolsDir\*x64.msi
   silentArgs     = "/quiet"
   checksum       = 'AUTO_GENERATED'
   checksumType   = 'sha256'
