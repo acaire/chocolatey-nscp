@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>nscp</id>
-        <version>$version$</version>
+        <version>###VERSION###</version>
         <title>NSClient++</title>
         <authors>Michael Medin</authors>
         <owners>Ash Caire</owners>
