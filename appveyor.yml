@@ -36,4 +36,4 @@ artifacts:
 - path: au_temp.zip
 
 on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://gist.githubusercontent.com/acaire/d41e8dd1f34031fee3da27196a718e7c/raw/0d87aded838a36473c9017dee772e468cee17ece/enable-rdp.ps1'))
