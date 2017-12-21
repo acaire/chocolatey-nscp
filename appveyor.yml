@@ -24,6 +24,9 @@ install:
 build_script:
   - ps: |
       $ErrorActionPreference = 'Continue'
+      cd ..
+      mv $APPVEYOR_PROJECT_NAME nscp
+      cd nscp
       ./tools/update.ps1
       7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
