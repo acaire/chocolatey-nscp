@@ -1,17 +1,14 @@
-﻿$packageName = 'NSClient++'
-$url         = "https://github.com/mickem/nscp/releases/download/{0}/NSCP-{0}-Win32.msi" -f $env:pkg_version
-$url64       = "https://github.com/mickem/nscp/releases/download/{0}/NSCP-{0}-x64.msi" -f $env:pkg_version
+$packageName = 'NSClient++'
 
 $packageArgs = @{
   packageName    = $packageName
   fileType       = 'msi'
-  url            = $url
-  url64bit       = $url64
+  file           = gi package\*x86.msi
+  file64         = gi package\*x64.msi
   silentArgs     = "/quiet"
-  validExitCodes = @(0)
-  checksum       = $env:checksum
+  checksum       = 'AUTO_GENERATED'
   checksumType   = 'sha256'
-  checksum64     = $env:checksum64
+  checksum64     = 'AUTO_GENERATED'
   checksumType64 = 'sha256'
 }
 

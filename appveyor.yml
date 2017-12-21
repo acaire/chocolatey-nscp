@@ -1,20 +1,33 @@
-version: 1.0.{build}
+branches:
+  only:
+  - fix_appveyor
+
 image: Visual Studio 2017
 
 environment:
-  pkg_version: 0.5.0.62
-  checksum: 2186b60d588fa0811344ce709332f9c63670019c62ae92eae49698bf76205a95
-  checksum64: 1854de86ad4fda3391f273de0f9985b702c014bdec01b26ad28a1343177f537f
+  github_user_repo: $APPVEYOR_REPO_NAME
+  github_api_key:
+    secure: MHdXgpFqYcrutm2mXkltOCj0yjju+jutTRURQVgxHbRqyHRGMFCm1USVwvWG1BiP
+  api_key:
+    secure: qA9IUUhaKFNPjIb9+1Qy0GV33mM5PGexYmGAIjbs242L6gRpwsHshf6/0BI5lJrg
 
 install:
   - ps: |
+      'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
+      $PSVersionTable
+
+  - ps: |
       iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       refreshenv
+      cinst au
 
 build_script:
-  - cmd: |
-      choco pack nscp.nuspec version=%pkg_version%
+  - ps: |
+    $ErrorActionPreference = 'Continue'
+    ./tools/update.ps1
+    7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
-test_script:
-  - cmd: |
-      choco install nscp -s .
+artifacts:
+- path: update_info.xml
+- path: Update-AUPackages.md
+- path: au_temp.zip
