@@ -5,8 +5,8 @@ $releases = 'https://github.com/mickem/nscp/releases'
 function global:au_SearchReplace {
     @{
        ".\tools\chocolateyInstall.ps1" = @{
-          "(^[$]checksum\s*=\s*)('.*')"   = "`$1'$($Latest.Checksum32)'"
-          "(^[$]checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
+          "(^\s*checksum\s*=\s*)('.*')"   = "`$1'$($Latest.Checksum32)'"
+          "(^\s*checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
         }
      }
 }
@@ -23,4 +23,4 @@ function global:au_GetLatest {
     return @{ URL64 = $url64; URL32 = $url32; Version = $version }
 }
 
-update -ChecksumFor none
+update -ChecksumFor all
