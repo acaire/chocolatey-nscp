@@ -6,6 +6,7 @@ function global:au_SearchReplace {
     @{
        "$($Latest.PackageName).nuspec" = @{
           "(###VERSION###)" = "`${1}$($Latest.Version)"
+          "(\<version\>).*?(\</version\>)" = "`${1}$($Latest.Version)`$2"
         }
      }
 }
