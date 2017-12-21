@@ -13,26 +13,17 @@ environment:
 
 install:
   - ps: |
-      dir
       'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
       $PSVersionTable
-      dir
 
   - ps: |
-      dir
       iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       refreshenv
       cinst au
-      dir
 
 build_script:
   - ps: |
-      dir
       $ErrorActionPreference = 'Continue'
-      cd ..
-      mv $APPVEYOR_PROJECT_NAME nscp
-      cd nscp
-      dir
       ./tools/update.ps1
       7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
