@@ -4,6 +4,9 @@ branches:
 
 image: Visual Studio 2017
 
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 environment:
   github_user_repo: $APPVEYOR_REPO_NAME
   github_api_key:
@@ -31,3 +34,6 @@ artifacts:
 - path: update_info.xml
 - path: Update-AUPackages.md
 - path: au_temp.zip
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
