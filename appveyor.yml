@@ -23,9 +23,9 @@ install:
 
 build_script:
   - ps: |
-    $ErrorActionPreference = 'Continue'
-    ./tools/update.ps1
-    7z a au_temp.zip $Env:TEMP\chocolatey\au\*
+      $ErrorActionPreference = 'Continue'
+      ./tools/update.ps1
+      7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
 artifacts:
 - path: update_info.xml
