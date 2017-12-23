@@ -17,8 +17,6 @@ function global:au_SearchReplace {
           "(^checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
         }
      }
-     cat $($Latest.PackageName).nuspec
-     cat tools\chocolateyInstall.ps1
 }
 
 function global:au_GetLatest {
