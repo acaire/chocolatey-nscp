@@ -4,7 +4,6 @@
         <id>nscp</id>
         <version>0.0.0.1</version>
         <title>NSClient++</title>
-        <authors>Michael Medin</authors>
         <owners>Ash Caire</owners>
         <licenseUrl>https://raw.githubusercontent.com/mickem/nscp/master/files/license.txt</licenseUrl>
         <projectUrl>http://nsclient.org/</projectUrl>
