@@ -13,9 +13,10 @@ function global:au_SearchReplace {
 function global:au_GetLatest {
     $download_page = Invoke-WebRequest -Uri $releases
 
-    $re      = 'NSCP-.*64.msi'
-    $url     = $download_page.links | ? href -match $re | select -First 1 -expand href
-    $url64   = 'https://github.com' + $url[0]
+    $re      = 'NSCP-.*.msi'
+    $url     = $download_page.links | ? href -match $re | select -First 2 -expand href
+    $url32   = 'https://github.com' + $url[0]
+    $url64   = 'https://github.com' + $url[1]
     $version = $url[0] -split '\/' | select -Index 5
 
     return @{ URL64 = $url64; URL32 = $url32; Version = $version }
