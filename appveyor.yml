@@ -6,13 +6,18 @@ image: Visual Studio 2017
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://gist.githubusercontent.com/acaire/d41e8dd1f34031fee3da27196a718e7c/raw/0d87aded838a36473c9017dee772e468cee17ece/enable-rdp.ps1'))
+  init:
+  - git config --global user.email "ash.caire+chocolatey@gmail.com"
+  - git config --global user.name "ChocoBot"
+  - git config --global core.safecrlf false
 
 environment:
+  api_key:
+    secure: qA9IUUhaKFNPjIb9+1Qy0GV33mM5PGexYmGAIjbs242L6gRpwsHshf6/0BI5lJrg
+  au_push: false
   github_user_repo: $APPVEYOR_REPO_NAME
   github_api_key:
     secure: MHdXgpFqYcrutm2mXkltOCj0yjju+jutTRURQVgxHbRqyHRGMFCm1USVwvWG1BiP
-  api_key:
-    secure: qA9IUUhaKFNPjIb9+1Qy0GV33mM5PGexYmGAIjbs242L6gRpwsHshf6/0BI5lJrg
 
 install:
   - ps: |
