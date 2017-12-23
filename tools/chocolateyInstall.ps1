@@ -1,4 +1,8 @@
+$ErrorActionPreference = 'Stop'
+
 $packageName = 'NSClient++'
+
+$toolsDir = Split-Path $MyInvocation.MyCommand.Definition
 $url         = 'https://github.com/mickem/nscp/releases/download/0.5.0.62/NSCP-0.5.0.62-Win32.msi'
 $url64       = 'https://github.com/mickem/nscp/releases/download/0.5.0.62/NSCP-0.5.0.62-x64.msi'
 $checksum    = 'foo'
@@ -18,3 +22,5 @@ $packageArgs = @{
 }
 
 Install-ChocolateyPackage @packageArgs
+
+Remove-Item $toolsDir\*.msi -ea 0 -Force

@@ -10,7 +10,7 @@ function global:au_SearchReplace {
      }
 
     @{
-       "tools/chocolateyInstall.ps1" = @{
+       "tools\chocolateyInstall.ps1" = @{
           "(^url\s*=\s*)('.*')"        = "`$1'$($Latest.URL32)'"
           "(^checksum\s*=\s*)('.*')"   = "`$1'$($Latest.Checksum32)'"
           "(^url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"
@@ -31,4 +31,4 @@ function global:au_GetLatest {
     return @{ URL64 = $url64; URL32 = $url32; Version = $version }
 }
 
-update -ChecksumFor all
+update -ChecksumFor none
