@@ -93,7 +93,7 @@ def main():
 
         write_file(f'out/package/services/metadata/core-properties/{app_uuid}.psmdcp', f"""\ufeff<?xml version="1.0" encoding="utf-8"?><coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"><dc:creator>{package['authors']}</dc:creator><dc:description>{package['summary']}</dc:description><dc:identifier>{package['name']}</dc:identifier><version>{version}</version><keywords>{package['keywords']}</keywords><dc:title>{package['title']}</dc:title><lastModifiedBy>choco, Version=0.10.11.0, Culture=neutral, PublicKeyToken=79d02ea9cad655eb;Microsoft Windows NT 6.2.9200.0;.NET Framework 4</lastModifiedBy></coreProperties>""")
 
-        write_file('out/tools/chocolateyInstall.ps1', f"""\ufeff$packageName = '{package['title']}
+        write_file('out/tools/chocolateyInstall.ps1', f"""\ufeff$packageName = '{package['title']}'
 $url = '{url_32}'
 $url64 = '{url_64}'
 
