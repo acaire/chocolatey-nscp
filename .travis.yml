@@ -3,5 +3,6 @@ language: shell
 os: windows
 
 script:
+  - cd nscp
   - choco pack
   - choco install packageName -dv -s .
