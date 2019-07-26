@@ -51,7 +51,7 @@ def write_file(fname, content):
 
 def main():
     with open('packages.yaml', 'r') as fh:
-        packages_yaml = yaml.load(fh)
+        packages_yaml = yaml.load(fh, Loader=yaml.SafeLoader)
 
     for package in packages_yaml['packages']:
         print('Processing package:', package['name'])
