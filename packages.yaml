@@ -1,0 +1,22 @@
+packages:
+  - authors: Michael Medin
+    bug_tracker_url: https://github.com/mickem/nscp/issues
+    docs_url: https://docs.nsclient.org
+    icon_url: https://cdn.rawgit.com/TomOne/various/eeae87a5ffe52336769c65c877aa504b4e854682/nscp.png
+    keywords: NSClient nagios admin
+    license_url: https://raw.githubusercontent.com/mickem/nscp/master/files/license.txt
+    name: nscp
+    owners: Ash Caire
+    package_source_url: https://github.com/acaire/chocolatey-nscp
+    project_source_url: https://github.com/mickem/nscp
+    project_url: https://nsclient.org/
+    regex_32: '/NSCP-.+-Win32.msi'
+    regex_64: '/NSCP-.+-x64.msi'
+    release_notes: https://github.com/mickem/nscp/releases
+    repo: mickem/nscp
+    summary: >-
+        NSClient++ (nscp) aims to be a simple yet powerful and flexible monitoring daemon.
+        It was built for Nagios/Icinga/Naemon, but nothing in the daemon is Nagios/Icinga
+        specific and it can and is used in many other scenarios where you want to
+        receive/distribute check metrics
+    title: NSClient++
