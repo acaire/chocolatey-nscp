@@ -15,5 +15,6 @@
       "depNameTemplate": "mickem/nscp",
       "datasourceTemplate": "github-releases"
     }
-  ]
+  ],
+  "versioning": "loose"
 }
