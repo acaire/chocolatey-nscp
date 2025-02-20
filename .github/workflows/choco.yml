@@ -1,0 +1,24 @@
+name: Build
+on:
+  push:
+    branches:
+      - move_to_github_actions
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - id: package
+        name: Create nuspec
+        run: |
+          pip install -r requirements.txt
+          python3 choco.py
+
+      - name: Push package
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: |
+            push ${{ steps.package.outputs.nupkg_filename }} --source https://push.chocolatey.org/ --key ${{ secrets.CHOCO_API_TOKEN }}
