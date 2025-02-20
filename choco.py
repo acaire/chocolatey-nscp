@@ -13,19 +13,6 @@ from shutil import rmtree
 def get_uuid():
     return str(uuid.uuid4()).replace('-', '')
 
-def get_latest_release(repo, regex_32, regex_64):
-    req = requests.get(f'https://github.com/{repo}/releases/latest', allow_redirects=True)
-    version = req.history[0].headers['Location'].split('/')[-1]
-
-    m = re.search(regex_32, req.text)
-    url_32 = f"https://github.com/{repo}/releases/download/{version}/{m.group().split('/')[-1]}"
-
-    m = re.search(regex_64, req.text)
-    url_64 = f"https://github.com/{repo}/releases/download/{version}/{m.group().split('/')[-1]}"
-
-    return version, url_32, url_64
-
-
 def get_checksum(url):
     req = requests.get(url)
     return hashlib.sha256(bytes(req.content)).hexdigest()
@@ -46,7 +33,7 @@ def write_file(fname, content):
     parent_dir = Path(fname).parent
     mkdir(parent_dir)
 
-    with open(fname, 'w') as f:
+    with open(fname, 'w', encoding='utf-8') as f:
         f.write(content)
 
 def main():
@@ -58,7 +45,10 @@ def main():
 
         app_uuid = get_uuid()
 
-        version, url_32, url_64 = get_latest_release(package['repo'], package['regex_32'], package['regex_64'])
+        version = package['version']
+
+        url_32 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-Win32.msi"
+        url_64 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-x64.msi"
 
         checksum_32 = get_checksum(url_32)
         checksum_64 = get_checksum(url_64)
@@ -106,17 +96,22 @@ $packageArgs = @{{
   validExitCodes = @(0)
   checksum       = '{checksum_32}'
   checksumType   = 'sha256'
-  checksum_64     = '{checksum_64}'
+  checksum_64    = '{checksum_64}'
   checksumType64 = 'sha256'
 }}
 
 Install-ChocolateyPackage @packageArgs""")
 
-        zipf = zipfile.ZipFile(f"{package['name']}.{version}.nupkg", 'w', zipfile.ZIP_DEFLATED)
+        zip_filename = f"{package['name']}.{version}.nupkg"
+        zipf = zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED)
         zipdir('out/', zipf)
         zipf.close()
 
         rmtree('out')
+
+        if os.getenv('CI', 'false') == 'true':
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+                fh.write(f'nupkg_filename={zip_filename}\n')
 
 if __name__ == '__main__':
     main()
