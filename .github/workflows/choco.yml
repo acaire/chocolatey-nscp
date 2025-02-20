@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - move_to_github_actions
+      - main
 
 jobs:
   build:
