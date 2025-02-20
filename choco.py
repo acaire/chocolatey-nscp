@@ -88,16 +88,16 @@ $url = '{url_32}'
 $url64 = '{url_64}'
 
 $packageArgs = @{{
-  packageName    = $packageName
-  fileType       = 'msi'
-  url            = $url
-  url64bit       = $url64
-  silentArgs     = "/quiet"
-  validExitCodes = @(0)
-  checksum       = '{checksum_32}'
-  checksumType   = 'sha256'
-  checksum_64    = '{checksum_64}'
-  checksumType64 = 'sha256'
+  PackageName    = $packageName
+  FileType       = 'msi'
+  Url            = $url
+  Url64bit       = $url64
+  SilentArgs     = "/quiet"
+  ValidExitCodes = @(0)
+  Checksum       = '{checksum_32}'
+  ChecksumType   = 'sha256'
+  Checksum64     = '{checksum_64}'
+  ChecksumType64 = 'sha256'
 }}
 
 Install-ChocolateyPackage @packageArgs""")
