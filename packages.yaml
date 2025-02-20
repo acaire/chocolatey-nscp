@@ -2,7 +2,7 @@ packages:
   - authors: Michael Medin
     bug_tracker_url: https://github.com/mickem/nscp/issues
     docs_url: https://docs.nsclient.org
-    icon_url: https://raw.githubusercontent.com/mickem/nscp/refs/heads/main/service/res/nscp.ico
+    icon_url: https://raw.githubusercontent.com/mickem/nscp/refs/heads/main/web/public/nscp.png
     keywords: NSClient nagios admin monitoring
     license_url: https://raw.githubusercontent.com/mickem/nscp/master/files/license.txt
     name: nscp
