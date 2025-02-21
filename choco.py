@@ -69,7 +69,6 @@ Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
         version_with_beta = version
         if pre_release:
             release_notes = 'Pre-release ' + release_notes
-            version_with_beta += '-beta'
 
         write_file(f"out/{package['name']}.nuspec", f"""<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
@@ -112,10 +111,6 @@ $packageArgs = @{{
   Url64bit       = $url64
   SilentArgs     = "/quiet"
   ValidExitCodes = @(0)
-  Checksum       = '{checksum_32}'
-  ChecksumType   = 'sha256'
-  Checksum64     = '{checksum_64}'
-  ChecksumType64 = 'sha256'
 }}
 
 Install-ChocolateyPackage @packageArgs""")

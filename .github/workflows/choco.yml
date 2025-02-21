@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - reject_last
 
 jobs:
   build:
