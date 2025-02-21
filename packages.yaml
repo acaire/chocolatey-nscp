@@ -18,4 +18,4 @@ packages:
         specific and it can and is used in many other scenarios where you want to
         receive/distribute check metrics
     title: NSClient++
-    version: 0.6.10
+    version: 0.6.11
