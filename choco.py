@@ -49,8 +49,8 @@ def main():
 
         version = package['version']
 
-        url_32 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-Win32.msi"
-        url_64 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-x64.msi"
+        url_32 = f"https://github.com/mickem/nscp/releases/download/{version}/N2SCP-{version}-Win32.msi"
+        url_64 = f"https://github.com/mickem/nscp/releases/download/{version}/N3SCP-{version}-x64.msi"
 
         checksum_32 = get_checksum(url_32)[:4]
         checksum_64 = get_checksum(url_64)[:4]
