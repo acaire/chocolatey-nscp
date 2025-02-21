@@ -78,6 +78,19 @@ Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
     <title>{package['title']}</title>
     <authors>{package['authors']}</authors>
     <owners>{package['owners']}</owners>
+    <licenseUrl>{package['license_url']}</licenseUrl>
+    <projectUrl>{package['project_url']}</projectUrl>
+    <iconUrl>{package['icon_url']}</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>{package['summary']}</description>
+    <summary>{package['summary']}</summary>
+    <releaseNotes>{release_notes}</releaseNotes>
+    <copyright />
+    <tags>{package['keywords']}</tags>
+    <projectSourceUrl>{package['project_source_url']}</projectSourceUrl>
+    <packageSourceUrl>{package['package_source_url']}</packageSourceUrl>
+    <docsUrl>{package['docs_url']}</docsUrl>
+    <bugTrackerUrl>{package['bug_tracker_url']}</bugTrackerUrl>
   </metadata>
 </package>""")
 
