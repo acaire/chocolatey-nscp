@@ -52,8 +52,8 @@ def main():
         url_32 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-Win32.msi"
         url_64 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-x64.msi"
 
-        checksum_32 = get_checksum(url_32)
-        checksum_64 = get_checksum(url_64)
+        checksum_32 = get_checksum(url_32)[:4]
+        checksum_64 = get_checksum(url_64)[:4]
 
         release_json = requests.get(f'https://api.github.com/repos/mickem/nscp/releases/tags/{version}').json()
         release_date = datetime.strptime(release_json['published_at'], "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d")
