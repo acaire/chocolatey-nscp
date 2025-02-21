@@ -74,7 +74,7 @@ Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>{package['name'].lower()}</id>
-    <version>{version_with_beta}</version>
+    <version{version_with_beta}</version>
     <title>{package['title']}</title>
     <authors>{package['authors']}</authors>
     <owners>{package['owners']}</owners>
