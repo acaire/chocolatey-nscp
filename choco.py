@@ -3,12 +3,14 @@
 import hashlib
 import os
 import re
-import requests
 import uuid
-import yaml
 import zipfile
 from pathlib import Path
 from shutil import rmtree
+from datetime import datetime
+
+import requests
+import yaml
 
 def get_uuid():
     return str(uuid.uuid4()).replace('-', '')
@@ -53,6 +55,22 @@ def main():
         checksum_32 = get_checksum(url_32)
         checksum_64 = get_checksum(url_64)
 
+        release_json = requests.get(f'https://api.github.com/repos/mickem/nscp/releases/tags/{version}').json()
+        release_date = datetime.strptime(release_json['published_at'], "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d")
+        pre_release = release_json['prerelease']
+
+        release_notes = f"""{release_json['name']} ({release_date})
+
+{release_json['body']}
+
+Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
+"""
+
+        version_with_beta = version
+        if pre_release:
+            release_notes = 'Pre-release ' + release_notes
+            version_with_beta += '-beta'
+
         write_file(f"out/{package['name']}.nuspec", f"""<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
@@ -67,7 +85,7 @@ def main():
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>{package['summary']}</description>
     <summary>{package['summary']}</summary>
-    <releaseNotes>{package['release_notes']}</releaseNotes>
+    <releaseNotes>{release_notes}</releaseNotes>
     <copyright />
     <tags>{package['keywords']}</tags>
     <projectSourceUrl>{package['project_source_url']}</projectSourceUrl>
@@ -102,7 +120,7 @@ $packageArgs = @{{
 
 Install-ChocolateyPackage @packageArgs""")
 
-        zip_filename = f"{package['name']}.{version}.nupkg"
+        zip_filename = f"{package['name']}.{version_with_beta}.nupkg"
         zipf = zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED)
         zipdir('out/', zipf)
         zipf.close()
