@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - push_0.6.4
 
 jobs:
   build:
