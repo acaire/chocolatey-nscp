@@ -71,6 +71,13 @@ Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
             release_notes = 'Pre-release ' + release_notes
             version_with_beta += '-beta'
 
+        dependencies = ''
+        if package['deps']:
+            dependencies = '    <dependencies>\n'
+            for dep in package['deps']:
+                dependencies += f'      <dependency id="{dep["id"]}" version="{dep["version"]}" />\n'
+            dependencies += '    </dependencies>'
+
         write_file(f"out/{package['name']}.nuspec", f"""<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
@@ -85,13 +92,15 @@ Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>{package['summary']}</description>
     <summary>{package['summary']}</summary>
-    <releaseNotes>{release_notes}</releaseNotes>
+    <releaseNotes>{release_notes}
+    </releaseNotes>
     <copyright />
     <tags>{package['keywords']}</tags>
     <projectSourceUrl>{package['project_source_url']}</projectSourceUrl>
     <packageSourceUrl>{package['package_source_url']}</packageSourceUrl>
     <docsUrl>{package['docs_url']}</docsUrl>
     <bugTrackerUrl>{package['bug_tracker_url']}</bugTrackerUrl>
+{dependencies}
   </metadata>
 </package>""")
 
