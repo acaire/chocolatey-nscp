@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-
+"""
+Build and deploy Chocolatey
+applications based on the
+information passed into
+packages.yaml.
+"""
 import hashlib
 import os
 import re
