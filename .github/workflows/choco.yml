@@ -1,5 +1,8 @@
 name: Build
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -17,8 +20,15 @@ jobs:
           pip install -r requirements.txt
           python3 choco.py
 
+      - name: Test package
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: |
+            install nscp --debug --verbose --source .
+
       - name: Push package
         uses: crazy-max/ghaction-chocolatey@v3
+        if: github.ref == 'refs/heads/main'
         with:
           args: |
             push ${{ steps.package.outputs.nupkg_filename }} --source https://push.chocolatey.org/ --key ${{ secrets.CHOCO_API_TOKEN }}
