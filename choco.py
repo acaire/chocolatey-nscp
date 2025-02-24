@@ -82,7 +82,7 @@ Release notes sourced from package['project_source_url']/releases/tag/{version}
         if package['deps']:
             dependencies = '    <dependencies>\n'
             for dep in package['deps']:
-                dependencies += f'      <dependency id="{dep["id"]}" version="{dep["version"]}" />\n'
+                dependencies += f'      <dependency id="{dep["id"]}" version="{dep["ver"]}" />\n'
             dependencies += '    </dependencies>'
 
         write_file(f"out/{package['name']}.nuspec", f"""<?xml version="1.0" encoding="utf-8"?>

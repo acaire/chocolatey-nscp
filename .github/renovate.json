@@ -7,7 +7,7 @@
       "customType": "regex",
       "fileMatch": ["^packages.yaml$"],
       "matchStrings": [
-        "^\\s\\s\\s\\sversion:\\s(?<currentValue>.*)$"
+        "version:\\s(?<currentValue>\\S+)"
       ],
       "depNameTemplate": "mickem/nscp",
       "datasourceTemplate": "github-releases"
