@@ -72,7 +72,9 @@ Release notes sourced from package['project_source_url']/releases/tag/{version}
 """
 
         version_with_beta = version
+        choco_pre_flag = ''
         if pre_release:
+            choco_pre_flag = '--pre '
             release_notes = 'Pre-release ' + release_notes
             version_with_beta += '-beta'
 
@@ -144,6 +146,7 @@ Install-ChocolateyPackage @packageArgs""")
         if os.getenv('CI', 'false') == 'true':
             with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
                 fh.write(f'nupkg_filename={zip_filename}\n')
+                fh.write(f'choco_pre_flag={choco_pre_flag}\n')
 
 if __name__ == '__main__':
     main()

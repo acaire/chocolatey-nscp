@@ -2,18 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "includePaths": ["packages.yaml"],
-  "separateMinorPatch": true,
-  "separateMultipleMinor": true,
-  "separateMultipleMajor": true,
   "customManagers": [
     {
       "customType": "regex",
       "fileMatch": ["^packages.yaml$"],
       "matchStrings": [
-        "version:\\s(?<currentValue>\\S+)"
+        "^    version:\\s(?<currentValue>\\S+)$"
       ],
       "depNameTemplate": "mickem/nscp",
       "datasourceTemplate": "github-releases"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "automerge": true
     }
   ],
   "versioning": "loose"
