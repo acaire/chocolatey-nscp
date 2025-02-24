@@ -21,4 +21,6 @@ packages:
         specific and it can and is used in many other scenarios where you want to
         receive/distribute check metrics
     title: NSClient++
+    url_filename_32: NSCP-{version}-Win32.msi
+    url_filename_64: NSCP-{version}-x64.msi
     version: 0.6.11
