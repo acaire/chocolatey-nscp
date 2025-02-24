@@ -54,13 +54,13 @@ def main():
 
         version = package['version']
 
-        url_32 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-Win32.msi"
-        url_64 = f"https://github.com/mickem/nscp/releases/download/{version}/NSCP-{version}-x64.msi"
+        url_32 = f"https://github.com/{package['repo']}/releases/download/{version}/" + package['url_filename_32'].format(version=version)
+        url_64 = f"https://github.com/{package['repo']}/releases/download/{version}/" + package['url_filename_64'].format(version=version)
 
         checksum_32 = get_checksum(url_32)
         checksum_64 = get_checksum(url_64)
 
-        release_json = requests.get(f'https://api.github.com/repos/mickem/nscp/releases/tags/{version}').json()
+        release_json = requests.get(f'https://api.github.com/repos/{package["repo"]}/releases/tags/{version}').json()
         release_date = datetime.strptime(release_json['published_at'], "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d")
         pre_release = release_json['prerelease']
 
@@ -68,7 +68,7 @@ def main():
 
 {release_json['body']}
 
-Release notes sourced from https://github.com/mickem/nscp/releases/tag/{version}
+Release notes sourced from package['project_source_url']/releases/tag/{version}
 """
 
         version_with_beta = version
