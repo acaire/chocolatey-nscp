@@ -3,7 +3,7 @@ packages:
     bug_tracker_url: https://github.com/mickem/nscp/issues
     deps:
     - id: vcredist140
-      ver: 14.42.34433
+      version: 14.42.34433
     docs_url: https://docs.nsclient.org
     icon_url: https://raw.githubusercontent.com/mickem/nscp/refs/heads/main/web/public/nscp.png
     keywords: NSClient nagios admin monitoring
