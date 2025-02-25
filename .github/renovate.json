@@ -4,12 +4,12 @@
   "includePaths": ["packages.yaml"],
   "customManagers": [
     {
-      "customType": "regex",
+      "customType": "jsonata",
+      "fileFormat": "yaml",
       "fileMatch": ["^packages.yaml$"],
       "matchStrings": [
-        "version:\\s(?<currentValue>\\S+)"
+        "packages.{\"depName\": repo, \"currentValue\": version}"
       ],
-      "depNameTemplate": "mickem/nscp",
       "datasourceTemplate": "github-releases"
     }
   ],
