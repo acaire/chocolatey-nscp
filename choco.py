@@ -68,7 +68,7 @@ def main():
 
 {release_json['body']}
 
-Release notes sourced from package['project_source_url']/releases/tag/{version}
+Release notes sourced from {package['project_source_url']}/releases/tag/{version}
 """
 
         version_with_beta = version
