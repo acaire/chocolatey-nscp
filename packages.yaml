@@ -23,4 +23,4 @@ packages:
     title: NSClient++
     url_filename_32: NSCP-{version}-Win32.msi
     url_filename_64: NSCP-{version}-x64.msi
-    version: 0.7.0
+    version: 0.8.0
