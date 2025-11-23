@@ -1,13 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "includePaths": ["packages.yaml"],
+  "extends": [
+    "config:recommended"
+  ],
+  "includePaths": [
+    "packages.yaml"
+  ],
   "ignoreUnstable": false,
   "customManagers": [
     {
       "customType": "jsonata",
       "fileFormat": "yaml",
-      "fileMatch": ["^packages.yaml$"],
+      "managerFilePatterns": [
+        "/^packages.yaml$/"
+      ],
       "matchStrings": [
         "packages.{\"depName\": repo, \"currentValue\": version}"
       ],
@@ -16,7 +22,9 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["*"],
+      "matchPackageNames": [
+        "*"
+      ],
       "automerge": true
     }
   ],
