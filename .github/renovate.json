@@ -3,9 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "includePaths": [
-    "packages.yaml"
-  ],
+  "pinDigests": true,
   "ignoreUnstable": false,
   "customManagers": [
     {
@@ -26,6 +24,24 @@
         "*"
       ],
       "automerge": true
+    },
+    {
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchPreRelease": false,
+      "labels": [
+        "stable"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchPreRelease": true,
+      "labels": [
+        "unstable"
+      ]
     }
   ],
   "versioning": "loose"

@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - id: package
         name: Create nupkg
@@ -21,7 +21,7 @@ jobs:
           python3 choco.py
 
       - name: Install nscp
-        uses: crazy-max/ghaction-chocolatey@v3
+        uses: crazy-max/ghaction-chocolatey@2526f467ccbd337d307fe179959cabbeca0bc8c0 # v3.4.0
         with:
           args: |
             install nscp --debug --verbose ${{ steps.package.outputs.choco_pre_flag }}--source .
@@ -30,9 +30,18 @@ jobs:
         run: |
           & 'C:\Program Files\NSClient++\nscp.exe' settings --show
 
-      - name: Push package
-        uses: crazy-max/ghaction-chocolatey@v3
+      - name: Check if packages.yaml was changed
+        id: check_changes
         if: github.ref == 'refs/heads/main'
+        run: |
+          $changed = $false
+          $diff = git diff --name-only HEAD~1 HEAD
+          if ($LASTEXITCODE -eq 0) { $changed = @($diff) -contains "packages.yaml" }
+          echo "packages_changed=$($changed.ToString().ToLower())" >> $env:GITHUB_OUTPUT
+
+      - name: Push package
+        uses: crazy-max/ghaction-chocolatey@2526f467ccbd337d307fe179959cabbeca0bc8c0 # v3.4.0
+        if: github.ref == 'refs/heads/main' && steps.check_changes.outputs.packages_changed == 'true'
         with:
           args: |
             push ${{ steps.package.outputs.nupkg_filename }} --source https://push.chocolatey.org/ --key ${{ secrets.CHOCO_API_TOKEN }}
