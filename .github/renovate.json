@@ -29,7 +29,12 @@
       "matchDatasources": [
         "github-releases"
       ],
-      "matchPreRelease": false,
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchNewValue": "/^[^-]+$/",
       "labels": [
         "stable"
       ]
@@ -38,7 +43,7 @@
       "matchDatasources": [
         "github-releases"
       ],
-      "matchPreRelease": true,
+      "matchNewValue": "/.+-/",
       "labels": [
         "unstable"
       ]
