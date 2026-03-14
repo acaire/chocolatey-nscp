@@ -24,29 +24,6 @@
         "*"
       ],
       "automerge": true
-    },
-    {
-      "matchDatasources": [
-        "github-releases"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "matchNewValue": "/^[^-]+$/",
-      "labels": [
-        "stable"
-      ]
-    },
-    {
-      "matchDatasources": [
-        "github-releases"
-      ],
-      "matchNewValue": "/.+-/",
-      "labels": [
-        "unstable"
-      ]
     }
   ],
   "versioning": "loose"

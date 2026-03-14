@@ -6,16 +6,13 @@ on:
   push:
     branches:
       - main
-    paths:
-      - packages.yaml
-      - choco.py
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.3.1
+        uses: actions/checkout@v4
 
       - id: package
         name: Create nupkg
@@ -24,7 +21,7 @@ jobs:
           python3 choco.py
 
       - name: Install nscp
-        uses: crazy-max/ghaction-chocolatey@v3.4.0
+        uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: |
             install nscp --debug --verbose ${{ steps.package.outputs.choco_pre_flag }}--source .
@@ -34,7 +31,7 @@ jobs:
           & 'C:\Program Files\NSClient++\nscp.exe' settings --show
 
       - name: Push package
-        uses: crazy-max/ghaction-chocolatey@v3.4.0
+        uses: crazy-max/ghaction-chocolatey@v3
         if: github.ref == 'refs/heads/main'
         with:
           args: |
