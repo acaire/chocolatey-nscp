@@ -17,6 +17,9 @@ from datetime import datetime
 import requests
 import yaml
 
+def cdata(text):
+    return f"<![CDATA[{text}]]>"
+
 def get_uuid():
     return str(uuid.uuid4()).replace('-', '')
 
@@ -99,7 +102,7 @@ Release notes sourced from {package['project_source_url']}/releases/tag/{version
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>{package['summary']}</description>
     <summary>{package['summary']}</summary>
-    <releaseNotes>{release_notes}
+    <releaseNotes>{cdata(release_notes)}
     </releaseNotes>
     <copyright />
     <tags>{package['keywords']}</tags>
