@@ -3,9 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "includePaths": [
-    "packages.yaml"
-  ],
+  "pinDigests": true,
   "ignoreUnstable": false,
   "customManagers": [
     {
