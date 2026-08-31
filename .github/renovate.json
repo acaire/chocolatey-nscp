@@ -7,6 +7,9 @@
     "packages.yaml"
   ],
   "ignoreUnstable": false,
+  "separateMinorPatch": true,
+  "separateMultipleMajor": true,
+  "separateMultipleMinor": true,
   "customManagers": [
     {
       "customType": "jsonata",
@@ -23,9 +26,10 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "*"
+        "mickem/nscp"
       ],
-      "automerge": false
+      "automerge": false,
+      "prConcurrentLimit": 0
     }
   ],
   "versioning": "loose"

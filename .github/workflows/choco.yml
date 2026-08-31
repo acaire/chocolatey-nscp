@@ -29,10 +29,3 @@ jobs:
       - name: Basic nscp test
         run: |
           & 'C:\Program Files\NSClient++\nscp.exe' settings --show
-
-      - name: Push package
-        uses: crazy-max/ghaction-chocolatey@v4
-        if: github.ref == 'refs/heads/main'
-        with:
-          args: |
-            push ${{ steps.package.outputs.nupkg_filename }} --source https://push.chocolatey.org/ --key ${{ secrets.CHOCO_API_TOKEN }}
