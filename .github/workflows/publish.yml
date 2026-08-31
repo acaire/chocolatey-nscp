@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "*/30 * * * *"
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     runs-on: windows-latest
